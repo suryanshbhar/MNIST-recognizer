@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+	  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+	<title>Digit Recognizer</title>
+</head>
+<body>
+	<header class="site-header">
+	  <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+	    <div class="container">
+	      <a class="navbar-brand mr-4" href="/convert">Digit Recognizer</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	      </button>
+	      <div class="collapse navbar-collapse" id="navbarToggle">
+	        <div class="navbar-nav mr-auto">
+	          <a class="nav-item nav-link" href="/">Home</a>
+	        </div>
+	        <!-- Navbar Right Side -->
+	        <div class="navbar-nav">
+	          <a class="nav-item nav-link" href="/about">About</a>
+	        </div>
+	      </div>
+	    </div>
+	  </nav>
+	</header>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+
+    <script type="text/javascript">
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = 0,
+        prevY = 0,
+        currY = 0,
+        dot_flag = false;
+
+    var x = "black",
+        y = 8;
+    
+    function init() {
+        canvas = document.getElementById('can');
+
+        // var c = document.getElementById("can");
+        // var ctx = c.getContext("2d");
+        
+
+        ctx = canvas.getContext("2d");
+        canvas.backgroundColor = "#FFFFF";
+        w = canvas.width;
+        h = canvas.height;
+    
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+    
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+    
+    function erase() {
+       
+            ctx.clearRect(0, 0, w, h);
+            // document.getElementById("canvasimg").style.display = "none";
+            
+            // document.getElementById('question').value = "";
+            // document.getElementById('nme').href = "";
+    }
+
+    download_img = function(el) {
+        var image = canvas.toDataURL("image/png");
+        el.href = image;
+        
+};
+
+    
+    function save() {
+
+        document.getElementById("canvasimg").style.backgroundColor = "white";
+
+        document.getElementById("canvasimg").style.border = "3px solid";
+
+        var dataURL = canvas.toDataURL("");
+        //window.alert(dataURL);
+        document.getElementById('nme').href = dataURL;
+        document.getElementById('question').value = dataURL;
+
+     
+        
+    
+        document.getElementById("canvasimg").src = dataURL;
+       document.getElementById("canvasimg").style.display = "inline";
+    }
+    
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+    
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 2, 2);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+    </script>
+
+       <body onload="init()">
+
+        <div class="container" style="position:absolute;top:7%;left:54%;"> 
+            <div class="card"> 
+                <div class="image-grid-container">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974076-55f8f05f-8cf0-4e68-8243-c8f7704fcf91.PNG">
+
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974241-26cdbf15-bba3-48a7-b67e-8e4d8be4e9de.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974321-656b69e1-b577-45d5-aa32-6dbbe78a35de.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974456-3de0e28a-54ec-4167-bbbd-69e71f7568ff.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974510-a01fe6db-56aa-4f62-9c99-eca230b6a2fc.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974565-5f374deb-ecda-4908-a903-04675c645368.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974628-f0b5a776-b3e9-44cb-8b77-bd0109c2e896.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974836-cea02ee3-57fe-4756-ac38-e543fe372387.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974893-48bc6637-2ace-40a1-8f40-5a9592632da1.PNG">
+                    <img class="y" src=
+    "https://user-images.githubusercontent.com/52960016/140974960-ad2b3b18-cd3f-4251-bb0f-577c1ed51b30.PNG">
+                </div> 
+                <div class="card-body"> 
+                      
+                    <p class="card-text">
+                        Refer these example illustrations
+                    
+                    </p> 
+                  
+                </div>
+            </div>
+        </div>
+
+        
+        <div style="position:absolute;top:59%;left:6%;">
+            <h6>Instructions :</h6>
+            <ul>
+                <li><i>Draw a number on the canvas, press Lock button followed by identify for identifying the digit</i></li>
+                <li><i>Try to refer example illustrations and darken the defining points of digit</i></li>
+            </ul>
+        </div>
+      
+
+        <canvas id="can" width="200" height="200" style="position:absolute;top:13%;left:6%;border:3px solid;"></canvas>
+
+        <img id="canvasimg" style="position:absolute;top:13%;left:30%;">
+
+        <input class="btn btn-outline-secondary" type="button" value="Lock" id="btn" size="30" onclick="save()" style="position:absolute;top:50%;left:6%;">
+
+
+        <input class="btn btn-outline-secondary" type="button" value="clear" id="clr" size="23" onclick="erase()" style="position:absolute;top:50%;left:11%;">
+
+        <!-- <a id="download" download="myImage.png" href="" onclick="download_img(this)" style="position:absolute;top:50%;left:15%;">Download to myImage.png</a> -->
+        
+        <a class="btn btn-outline-secondary" id="nme" download="myImage.png" style="position:absolute;top:50%;left:30%;" >Download</a>
+
+        <div class="container" style="position:absolute;bottom:2%;left:5%;">
+
+
+
+
+            <form action="/convert" method="POST" enctype="multipart/form-data" >
+			
+                <div class="form-group">
+                    <label for="question"><h6>Image Link Generated  </h6></label>
+                    <input class="form-control" type="text" name="question" id="question" readonly>
+                </div>
+    
+                <button type="submit" class="btn btn-primary ">Identify</button>
+    
+            </form>
+
+   
+
+
+
+        </div>
+
+       
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
