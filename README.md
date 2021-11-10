@@ -22,11 +22,11 @@ And 'multi-qa-MiniLM-L6-cos-v1' sentence transformer model has been used to retu
 <br>
 ## I/O screenshots
 ### Input
-![](screenshots/input.PNG)
+![](screenshots/inp.PNG)
 <br>
 
 ### Output
-![](screenshots/output.PNG)
+![](screenshots/out.PNG)
 
 
 ## Authors
