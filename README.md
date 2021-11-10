@@ -1,19 +1,19 @@
-# QUERY RESOLVING SYSTEM
-This webpage illustrates the application of natural language processing.
-The user has to input a corpus with a query to the application and the apllication returns the most semantically and contextually similar answers.<br>
+# 0-9 Digit Recognizer
+This webpage illustrates the application of Image Processing and Neural Networks.
+The user has to draw a number as an input to the application and the apllication returns the closest digit it resembles.<br>
 The web application has been deployed using heroku and is available at <br>
 https://query-resolving-system.herokuapp.com/ 
 ## Description
-The project basically aims to provide a context limited query answering system.<br>
-Text preprocessing has been done using nltk library.<br>
-Further nltk-word tagger has been used to answer one word queries.<br>
-And 'multi-qa-MiniLM-L6-cos-v1' sentence transformer model has been used to return contextually similar answers<br>
+The project basically aims to provide a MNIST dataset digit recognizer.<br>
+Text preprocessing of the input canvas image has been done using OpenCV Library.<br>
+Convolutional neural network has been used as the predicting model built using tf-keras library.<br>
+And 'MNIST' dataset has been used as training dataset for the CNN.<br>
 ## Usage
 <ul>
 <li>After visiting the home page user has to press the the link to visit the convert page</li>
-<li>At the convert page the user can then either select a sample corpus or provide his custom corpus in the textarea</li>
-<li>User is then required to input a query which would be resolved by the application</li>
-<li>Application will return an objective answer and top 5 contextually similar answers along with their scores</li>
+<li>At the convert page the user can then draw an input image on the input canvas</li>
+<li>User is then required to 'Lock' the input and further press 'Identify'</li>
+<li>Application will return then return the predicted output label by the model</li>
 </ul>
 
 ## Flowchart Of Methodology
