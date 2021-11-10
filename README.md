@@ -2,7 +2,7 @@
 This webpage illustrates the application of Image Processing and Neural Networks.
 The user has to draw a number as an input to the application and the apllication returns the closest digit it resembles.<br>
 The web application has been deployed using heroku and is available at <br>
-https://query-resolving-system.herokuapp.com/ 
+https://digit-recognizer-09mnist.herokuapp.com/
 ## Description
 The project basically aims to provide a MNIST dataset digit recognizer.<br>
 Text preprocessing of the input canvas image has been done using OpenCV Library.<br>
