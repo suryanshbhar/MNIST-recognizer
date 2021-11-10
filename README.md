@@ -1,6 +1,6 @@
 # 0-9 Digit Recognizer
 This webpage illustrates the application of Image Processing and Neural Networks.
-The user has to draw a number as an input to the application and the apllication returns the closest digit it resembles.<br>
+The user has to draw a number as an input to the application and the application returns the closest digit it resembles.<br>
 The web application has been deployed using heroku and is available at <br>
 https://digit-recognizer-09mnist.herokuapp.com/
 ## Description
